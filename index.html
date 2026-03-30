@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loot — Run Deep</title>
+  <meta name="description" content="Gestão financeira e analytics para times de poker profissional. Tudo em um só lugar, com inteligência aplicada." />
+  <meta property="og:title" content="Loot — Run Deep" />
+  <meta property="og:description" content="Gestão financeira e analytics para times de poker profissional." />
+  <meta property="og:image" content="./assets/loot_green.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="./assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #262E3A;
+      --bg-card:   #2E3848;
+      --border:    rgba(255,255,255,0.07);
+      --teal:      #3CBCBC;
+      --teal-dim:  rgba(60,188,188,0.12);
+      --text:      #F0F4F8;
+      --muted:     rgba(240,244,248,0.45);
+      --radius:    12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(38,46,58,0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav img.logo { height: 28px; width: auto; }
+
+    nav .badge {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal);
+      border: 1px solid rgba(60,188,188,0.35);
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(60,188,188,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero img.hero-logo {
+      height: 72px;
+      width: auto;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .tagline {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      max-width: 640px;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 strong {
+      font-weight: 600;
+    }
+
+    .hero p {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 56px;
+    }
+
+    .divider {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--teal), transparent);
+      margin: 0 auto 56px;
+    }
+
+    /* ── FEATURES GRID ── */
+    .features {
+      padding: 0 24px 80px;
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .features-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .card {
+      background: var(--bg-card);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .card:hover { background: #333D4F; }
+
+    .card-icon {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .card h3 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .card p {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── BOTTOM SECTION ── */
+    .bottom {
+      padding: 80px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    .bottom::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(circle at bottom, rgba(60,188,188,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .bottom h2 {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .bottom h2 span { color: var(--teal); }
+
+    .bottom p {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 24px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer img { height: 18px; opacity: 0.5; }
+
+    footer span {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 420px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <img class="logo" src="./assets/loot_green.png" alt="Loot" />
+    <span class="badge">Em breve</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-logo" src="./assets/loot_green.png" alt="Loot" />
+    <p class="tagline">Run Deep</p>
+    <h1>A velha folha de Excel<br /><strong>acabou.</strong></h1>
+    <p>Gestão financeira, sessões, analytics e performance para times de poker profissional — tudo em um só lugar.</p>
+    <div class="divider"></div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <p class="features-label">O que está chegando</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Gestão</h3>
+        <p>Hierarquia de acesso com papéis definidos. Cadastro centralizado e rastreável.</p>
+      </div>
+      <div class="card">
+        <h3>Transações</h3>
+        <p>Ciclo completo de movimentações financeiras com comprovantes e auditoria.</p>
+      </div>
+      <div class="card">
+        <h3>Sessões</h3>
+        <p>Registro diário com cálculo automático de makeup, resultado líquido e extrato instantâneo.</p>
+      </div>
+      <div class="card">
+        <h3>Torneios</h3>
+        <p>Import do Sharkscope para todo o time. Conversão de moedas e correção automática de dados.</p>
+      </div>
+      <div class="card">
+        <h3>Performance</h3>
+        <p>Algoritmo de análise por ABI, ROI por formato e Score de Performance configurável.</p>
+      </div>
+      <div class="card">
+        <h3>Schedule +EV</h3>
+        <p>Sugestão inteligente dos torneios mais lucrativos para o perfil de cada jogador.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM -->
+  <section class="bottom">
+    <h2>Decisões baseadas em dados,<br /><span>não em intuição.</span></h2>
+    <p>lootdeep.com — em desenvolvimento</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="./assets/loot_green.png" alt="Loot" />
+    <span>© 2026 Loot Analytics · lootdeep.com</span>
+  </footer>
+
+</body>
+</html>
