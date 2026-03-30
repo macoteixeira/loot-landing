@@ -58,6 +58,22 @@
 
     nav img.logo { height: 28px; width: auto; }
 
+    nav .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    nav .nav-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav .nav-link:hover { color: var(--text); }
+
     nav .badge {
       font-size: 11px;
       font-weight: 500;
@@ -120,9 +136,7 @@
       margin-bottom: 20px;
     }
 
-    .hero h1 strong {
-      font-weight: 600;
-    }
+    .hero h1 strong { font-weight: 600; }
 
     .hero p {
       font-size: 17px;
@@ -159,7 +173,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
@@ -178,11 +192,6 @@
 
     .card:hover { background: #333D4F; }
 
-    .card-icon {
-      font-size: 18px;
-      margin-bottom: 4px;
-    }
-
     .card h3 {
       font-size: 13px;
       font-weight: 600;
@@ -198,7 +207,91 @@
       line-height: 1.5;
     }
 
-    /* ── BOTTOM SECTION ── */
+    /* ── FOUNDING CTA ── */
+    .founding-cta {
+      padding: 0 24px 80px;
+      max-width: 960px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .founding-banner {
+      background: var(--bg-card);
+      border: 1px solid rgba(60,188,188,0.25);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .founding-banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    }
+
+    .founding-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .founding-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .founding-title {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .founding-vacancies {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    .founding-vacancies strong {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    .founding-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal);
+      color: #1a2230;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .founding-btn:hover { opacity: 0.85; }
+
+    @media (max-width: 640px) {
+      .founding-banner { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+      .founding-btn { width: 100%; justify-content: center; }
+    }
+
+    /* ── BOTTOM ── */
     .bottom {
       padding: 80px 24px;
       text-align: center;
@@ -245,21 +338,56 @@
 
     footer img { height: 18px; opacity: 0.5; }
 
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
     footer span {
       font-size: 12px;
       color: var(--muted);
       letter-spacing: 0.03em;
     }
 
+    footer a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--teal); }
+
+    /* Instagram icon */
+    .ig-icon {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .ig-icon:hover { color: var(--teal); }
+
+    .ig-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
     /* ── RESPONSIVE ── */
-    @media (max-width: 640px) {
+    @media (max-width: 720px) {
       nav { padding: 16px 24px; }
-      footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
       .grid { grid-template-columns: 1fr 1fr; }
+      footer { padding: 20px 24px; flex-direction: column; align-items: flex-start; }
     }
 
     @media (max-width: 420px) {
       .grid { grid-template-columns: 1fr; }
+      nav .nav-link { display: none; }
     }
   </style>
 </head>
@@ -268,7 +396,10 @@
   <!-- NAV -->
   <nav>
     <img class="logo" src="./assets/loot_green.png" alt="Loot" />
-    <span class="badge">Em breve</span>
+    <div class="nav-right">
+      <a href="./founding-member.html" class="nav-link">Founding Member</a>
+      <span class="badge">Em breve</span>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -311,16 +442,37 @@
     </div>
   </section>
 
+  <!-- FOUNDING CTA -->
+  <section class="founding-cta">
+    <div class="founding-banner">
+      <div class="founding-left">
+        <span class="founding-badge">Acesso Antecipado</span>
+        <span class="founding-title">Seja um Founding Member</span>
+        <span class="founding-vacancies">Restam apenas <strong>4 vagas</strong> no programa de acesso antecipado.</span>
+      </div>
+      <a href="./founding-member.html" class="founding-btn">Saber mais →</a>
+    </div>
+  </section>
+
   <!-- BOTTOM -->
   <section class="bottom">
     <h2>Decisões baseadas em dados,<br /><span>não em intuição.</span></h2>
-    <p>lootdeep.com — em desenvolvimento</p>
+    <p>lootdeep.com — em breve</p>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <img src="./assets/loot_green.png" alt="Loot" />
-    <span>© 2026 Loot Analytics · lootdeep.com</span>
+    <div class="footer-right">
+      <a href="mailto:contato@lootdeep.com">contato@lootdeep.com</a>
+      <a href="https://www.instagram.com/loot.deep/" target="_blank" class="ig-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        @loot.deep
+      </a>
+      <span>© 2026 Loot Analytics</span>
+    </div>
   </footer>
 
 </body>
